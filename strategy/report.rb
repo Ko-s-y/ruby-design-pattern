@@ -1,7 +1,7 @@
 module Strategy
   class Report
     attr_reader :title, :text
-    attr_accessor :formatter
+    attr_accessor :formatter # あとからformatterを差し替えられるようにする
 
     def initialize(formatter)
       @title = 'Monthly Report'

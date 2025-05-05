@@ -4,19 +4,6 @@
 
 ```mermaid
 classDiagram
-    class Formatter {
-        <<abstract>>
-        +output_report(title, text)
-    }
-
-    class HTMLFormatter {
-        +output_report(title, text)
-    }
-
-    class PlainTextFormatter {
-        +output_report(title, text)
-    }
-
     class Report {
         -title
         -text
@@ -25,9 +12,16 @@ classDiagram
         +output_report()
     }
 
-    Formatter <|-- HTMLFormatter
-    Formatter <|-- PlainTextFormatter
-    Report o-- Formatter
+    class HTMLFormatter {
+        +output_report(context)
+    }
+
+    class PlainTextFormatter {
+        +output_report(context)
+    }
+
+    Report o-- HTMLFormatter : formatter
+    Report o-- PlainTextFormatter : formatter
 ```
 
 ## IRBでの実行方法
