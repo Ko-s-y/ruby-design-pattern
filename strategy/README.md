@@ -1,4 +1,4 @@
-# Strategyパターンの使用方法
+# Strategyパターン
 
 ## クラス図
 
@@ -34,7 +34,7 @@ classDiagram
 
 1. プロジェクトのルートディレクトリに移動します：
 ```bash
-cd /Users/s-ko/source/github.com/Ko-s-y/ruby-design-pattern
+cd ruby-design-pattern
 ```
 
 2. IRBを起動します：
