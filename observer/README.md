@@ -5,7 +5,9 @@
 ```mermaid
 classDiagram
     class Subject {
-        <<interface>>
+        <<module>>
+        -observers: Array
+        +initialize()
         +add_observer(observer)
         +delete_observer(observer)
         +notify_observers()
@@ -20,12 +22,8 @@ classDiagram
         -name: String
         -title: String
         -salary: Integer
-        -observers: Array
         +initialize(name, title, salary)
         +salary=(new_salary)
-        +add_observer(observer)
-        +delete_observer(observer)
-        +notify_observers()
     }
 
     class TaxMan {
@@ -36,7 +34,7 @@ classDiagram
         +update(changed_employee)
     }
 
-    Subject <|.. Employee : implements
+    Subject <|-- Employee : includes
     Observer <|.. TaxMan : implements
     Observer <|.. Payroll : implements
     Employee --> Observer : notifies
@@ -60,7 +58,9 @@ irb -r ./observer/init
 ```ruby
 fred = Employee.new('Fred', 'Crane Operator', 300000)
 payroll = Payroll.new
+tax_man = TaxMan.new
 fred.add_observer(payroll)
+fred.add_observer(tax_man)
 fred.salary = 40000000
 ```
 
@@ -68,4 +68,5 @@ fred.salary = 40000000
 ```
 Fredのために小切手を切ります。
 彼の給料は40000000になりました。
+Fredのために新しい税金の請求書を送ります。
 ```
